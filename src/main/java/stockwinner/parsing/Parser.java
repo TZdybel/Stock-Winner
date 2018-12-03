@@ -1,3 +1,5 @@
+package stockwinner.parsing;
+
 import java.io.*;
 import java.util.*;
 
