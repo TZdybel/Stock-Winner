@@ -35,7 +35,6 @@ class CSVParserTest {
         Object key = null;
         while(csvParser.values.keySet().iterator().hasNext()){
             key = csvParser.values.keySet().iterator().next();
-            System.out.println("DA");
         }
         assertEquals(129.6300,csvParser.values.get(key).doubleValue());
     }
