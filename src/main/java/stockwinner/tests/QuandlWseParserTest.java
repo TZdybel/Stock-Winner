@@ -21,6 +21,15 @@ class QuandlWseParserTest {
         assertEquals(109.8, quandlWseParser.values.get(key).doubleValue());
     }
 
+
+    @Test
+    public void shouldReturnJsonFirstDate(){
+        QuandlWseParser quandlWseParser = new QuandlWseParser();
+        quandlWseParser.parseValues("quandl_wse\\kursy_dzienne_pekao.json","4");
+        Object key = quandlWseParser.values.keySet().iterator().next();
+        assertEquals("2018-11-30", key);
+    }
+
     @Test
     public void shouldReturnJsonLastOpenValue(){
         QuandlWseParser quandlWseParser = new QuandlWseParser();
@@ -41,6 +50,17 @@ class QuandlWseParserTest {
             key = quandlWseParser.values.keySet().iterator().next();
         }
         assertEquals(55.0, quandlWseParser.values.get(key).doubleValue());
+    }
+
+    @Test
+    public void shouldReturnJsonLastDate(){
+        QuandlWseParser quandlWseParser = new QuandlWseParser();
+        quandlWseParser.parseValues("quandl_wse\\kursy_dzienne_pekao.json","4");
+        Object key = null;
+        while(quandlWseParser.values.keySet().iterator().hasNext()){
+            key = quandlWseParser.values.keySet().iterator().next();
+        }
+        assertEquals("1998-06-30", key);
     }
 
 }

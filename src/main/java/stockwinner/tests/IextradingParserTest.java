@@ -21,6 +21,14 @@ class IextradingParserTest {
     }
 
     @Test
+    public void shouldReturnJsonFirstDate(){
+        IextradingParser iextradingParser = new IextradingParser();
+        iextradingParser.parseValues("iextrading\\kursy_dzienne_apple.json", "close");
+        Object key = iextradingParser.values.keySet().iterator().next();
+        assertEquals("2013-12-02", key);
+    }
+
+    @Test
     public void shouldReturnJsonLastOpenValue(){
         IextradingParser iextradingParser = new IextradingParser();
         iextradingParser.parseValues("iextrading\\kursy_dzienne_apple.json", "open");
@@ -40,6 +48,17 @@ class IextradingParserTest {
             key = iextradingParser.values.keySet().iterator().next();
         }
         assertEquals(178.58 , iextradingParser.values.get(key).doubleValue());
+    }
+
+    @Test
+    public void shouldReturnJsonLastDate(){
+        IextradingParser iextradingParser = new IextradingParser();
+        iextradingParser.parseValues("iextrading\\kursy_dzienne_apple.json", "close");
+        Object key = null;
+        while(iextradingParser.values.keySet().iterator().hasNext()){
+            key = iextradingParser.values.keySet().iterator().next();
+        }
+        assertEquals("2018-11-30", key);
     }
 
 }
