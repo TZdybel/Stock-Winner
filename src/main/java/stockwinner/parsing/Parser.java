@@ -17,25 +17,28 @@ public class Parser {
         }
     }
 
-    protected void parseValues(String filename, String attribute){};
+    public Map<String, Double> getValues(){
+        return values;
+    }
+
+    public void parseValues(String filename, String attribute){};
 
     protected void csvParsing(String filename, int key, int val){};
 
     public static void main(String[] args) throws FileNotFoundException {
 
         AlphavantageParser alphavantageParser = new AlphavantageParser();
-        alphavantageParser.parseValues("alphavantage\\kursy_dzienne_microsoft.json", "4. close");
+        alphavantageParser.parseValues("data\\alphavantage\\kursy_dzienne_microsoft.json", "4. close");
         alphavantageParser.showData();
 
         System.out.println("****************");
 
         CSVParser csvParser = new CSVParser();
-        csvParser.csvParsing("quandl_wse\\kursy_dzienne_pkobp.csv", 0,1);
+        csvParser.csvParsing("data\\quandl_wse\\kursy_dzienne_pkobp.csv", 0,1);
         csvParser.showData();
 
         //alphavantageParser.csvParsing("quandl_wse\\kursy_dzienne_pkobp.csv", 0,1);
        // alphavantageParser.showData();
-
 
         //QuandlWseParser quandlWseParser = new QuandlWseParser();
         //quandlWseParser.parseValues("quandl_wse\\kursy_tygodniowe_pknorlen.json", "1");

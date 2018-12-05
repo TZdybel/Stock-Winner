@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="stockwinner.ChartController"
+            prefHeight="400.0" prefWidth="600.0">
+
+    <LineChart fx:id="valueChart"
+               onMouseDragged="#handleValueChartMouseDrag"
+               onMousePressed="#handleValueChartMouseDragStart"
+               onScroll="#handleValueChartScroll"
+               prefHeight="640" prefWidth="650.0"
+               title="Wykres wartości"
+               GridPane.columnIndex="0" GridPane.columnSpan="9"
+               GridPane.rowIndex="2" GridPane.rowSpan="9">
+
+        <xAxis>
+            <NumberAxis fx:id="valueXAxis" side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+            <NumberAxis fx:id="valueYAxis" side="LEFT" />
+        </yAxis>
+    </LineChart>
+
+</AnchorPane>
