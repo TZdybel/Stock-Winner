@@ -17,7 +17,7 @@ public class CSVParser extends Parser {
             line = br.readLine();
             while((line = br.readLine()) != null){
                 String[] row = line.split(splitBy);
-                super.values.put(row[key], Double.parseDouble(row[val]));
+                super.getValues().put(row[key], Double.parseDouble(row[val]));
             }
         } catch(FileNotFoundException e){
             e.printStackTrace();

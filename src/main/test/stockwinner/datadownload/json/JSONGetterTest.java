@@ -1,5 +1,6 @@
 package stockwinner.datadownload.json;
 
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -7,11 +8,20 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import static org.junit.Assert.*;
 
 public class JSONGetterTest {
     private JSONGetter getter = new JSONGetter();
+
+    @AfterClass
+    public static void tearDownClass() {
+        File file = new File("123.json");
+        file.delete();
+    }
 
     @Test
     public void shouldCreateFileNamed123() {
@@ -27,6 +37,7 @@ public class JSONGetterTest {
         try {
             BufferedReader br = new BufferedReader(new FileReader("123.json"));
             assertNotNull(br.readLine());
+            br.close();
         } catch (IOException e) {
             fail();
         }

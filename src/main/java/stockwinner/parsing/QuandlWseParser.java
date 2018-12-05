@@ -24,7 +24,7 @@ public class QuandlWseParser extends Parser {
             int len = jsonObj.get("dataset").getAsJsonObject().get("data").getAsJsonArray().size();
             for (int i = 0; i < len; i++) {
                 JsonArray jsonTmpArray = jsonObj.get("dataset").getAsJsonObject().get("data").getAsJsonArray().get(i).getAsJsonArray();
-                super.values.put(jsonTmpArray.get(0).getAsString(), jsonTmpArray.get(Integer.parseInt(attribute)).getAsDouble());
+                super.getValues().put(jsonTmpArray.get(0).getAsString(), jsonTmpArray.get(Integer.parseInt(attribute)).getAsDouble());
                 //System.out.println(jsonObj.get("dataset").getAsJsonObject().get("data").getAsJsonArray().get(i).getAsJsonArray().get(0));
             }
         } catch (FileNotFoundException e) {

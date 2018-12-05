@@ -17,7 +17,7 @@ public class IextradingParser extends Parser {
             JsonElement jsonElement = new JsonParser().parse(new FileReader(filename));
             JsonArray jsonArr = jsonElement.getAsJsonArray();
             for(int i=0; i<jsonArr.size(); i++){
-                super.values.put(jsonArr.get(i).getAsJsonObject().get("date").getAsString(), jsonArr.get(i).getAsJsonObject().get(attribute).getAsDouble());
+                super.getValues().put(jsonArr.get(i).getAsJsonObject().get("date").getAsString(), jsonArr.get(i).getAsJsonObject().get(attribute).getAsDouble());
             }
         } catch(FileNotFoundException e){
             e.printStackTrace();

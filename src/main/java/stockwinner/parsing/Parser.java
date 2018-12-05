@@ -5,7 +5,7 @@ import java.util.*;
 
 public class Parser {
 
-    protected Map<String, Double> values;
+    private Map<String, Double> values;
 
     public Parser(){
         this.values = new LinkedHashMap<String, Double>();
