@@ -23,5 +23,20 @@ public class IextradingParser extends Parser {
             e.printStackTrace();
         }
     }
+
+    @Override
+    public void parseAttributes(String filename){
+        try{
+            JsonElement jsonElement = new JsonParser().parse(new FileReader(filename));
+            JsonArray jsonArr = jsonElement.getAsJsonArray();
+            String[] split = jsonArr.get(0).toString().split(",");
+            for(int i=1; i<split.length; i++){
+                String[] splitinner = split[i].split(":");
+                super.getAttributes().add(splitinner[0].substring(1, splitinner[0].length()-1));
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 }
 
