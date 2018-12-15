@@ -11,7 +11,7 @@ public class Parser {
     public Parser(){
 
         this.values = new LinkedHashMap<String, Double>();
-        this.attributes = new List<String>();
+        this.attributes = new ArrayList<String>();
 
     }
 
