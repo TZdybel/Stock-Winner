@@ -9,10 +9,8 @@ public class Parser {
     private List<String> attributes;
 
     public Parser(){
-
         this.values = new LinkedHashMap<String, Double>();
         this.attributes = new ArrayList<String>();
-
     }
 
     public void showData(){
@@ -33,6 +31,8 @@ public class Parser {
 
     protected void csvParsing(String filename, int key, int val){};
 
+    protected void csvAttributes(String filename){};
+
     public static void main(String[] args) throws FileNotFoundException {
 
 //        AlphavantageParser alphavantageParser = new AlphavantageParser();
@@ -42,23 +42,28 @@ public class Parser {
 ////
 //        System.out.println("****************");
 //
-//        CSVParser csvParser = new CSVParser();
-//        csvParser.csvParsing("data\\quandl_wse\\kursy_dzienne_pkobp.csv", 0,1);
-//        csvParser.showData();
+            CSVParser csvParser = new CSVParser();
+            csvParser.csvAttributes("data\\quandl_wse\\kursy_dzienne_pkobp.csv");
+            System.out.println(csvParser.getAttributes());
+
+            //csvParser.csvParsing("data\\quandl_wse\\kursy_dzienne_pkobp.csv", 0,1);
+            //csvParser.showData();
 //
 //        //alphavantageParser.csvParsing("quandl_wse\\kursy_dzienne_pkobp.csv", 0,1);
 //       // alphavantageParser.showData();
 //
-//        //QuandlWseParser quandlWseParser = new QuandlWseParser();
-//        //quandlWseParser.parseValues("quandl_wse\\kursy_tygodniowe_pknorlen.json", "1");
-//        //quandlWseParser.showData();
+//            QuandlWseParser quandlWseParser = new QuandlWseParser();
+//            quandlWseParser.parseAttributes("data\\quandl_wse\\kursy_miesieczne_pknorlen.json");
+//            //System.out.println(quandlWseParser.getAttributes());
+//            quandlWseParser.parseValues("data\\quandl_wse\\kursy_tygodniowe_pknorlen.json", "%Change");
+//            //quandlWseParser.showData();
 //
 //        //quandlWseParser.csvParsing("quandl_wse\\kursy_dzienne_pkobp.csv", 0,1);
 ////        quandlWseParser.showData();
 //
-            IextradingParser iextradingParser = new IextradingParser();
-            //iextradingParser.parseValues("iextrading\\kursy_dzienne_apple.json", "close");
-            iextradingParser.parseAttributes("data\\iextrading\\kursy_dzienne_apple.json");
+//            IextradingParser iextradingParser = new IextradingParser();
+//            //iextradingParser.parseValues("iextrading\\kursy_dzienne_apple.json", "close");
+//            iextradingParser.parseAttributes("data\\iextrading\\kursy_dzienne_apple.json");
 // iextradingParser.showData();
 
     }
