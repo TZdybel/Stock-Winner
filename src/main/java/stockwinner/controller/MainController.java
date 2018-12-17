@@ -78,6 +78,7 @@ public class MainController {
             ChartDataSource source = dialog.getConvertedResults();
 
             addDataSource("dataSource" + allSeries.size(), source);
+            chartController.resetZoom();
 
         } catch (IOException | ParseException e) {
             e.printStackTrace();

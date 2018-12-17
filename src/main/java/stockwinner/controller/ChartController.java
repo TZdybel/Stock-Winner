@@ -44,6 +44,8 @@ public class ChartController {
         valueXAxis.setAutoRanging(false);
         valueYAxis.setAutoRanging(false);
 
+        if(maxChartHeight == null) return;
+
         // scroll w dol => delta dodatnia
         double scrollFactorX = -1 * event.getDeltaX() / 800.0;
         double scrollFactorY = -1 * event.getDeltaY() / 800.0;

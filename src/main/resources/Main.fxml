@@ -12,7 +12,7 @@
 
     <ComboBox fx:id="valueSource" onAction="#handleDataSourceChange" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="0" />
     <Button fx:id="zoomResetButton" onAction="#onZoomReset" text="Reset zoom" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="0" />
-    <Text fx:id="hoverValue" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+    <Text fx:id="hoverValue" GridPane.columnIndex="5" GridPane.rowIndex="0" />
 
     <fx:include fx:id="chart" source="Chart.fxml"
                 GridPane.columnSpan="10"

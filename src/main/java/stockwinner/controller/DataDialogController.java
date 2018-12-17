@@ -1,8 +1,11 @@
 package stockwinner.controller;
 
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.chart.XYChart.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
@@ -16,6 +19,7 @@ import stockwinner.parsing.QuandlWseParser;
 import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.List;
 import java.util.Map;
 
 public class DataDialogController {
@@ -26,11 +30,14 @@ public class DataDialogController {
     private ComboBox parserChoice;
 
     @FXML
-    private TextField attachment;
+    private ComboBox attributeChoice;
+
     @FXML
     private TextField filename;
+
     private Map<String, Double> results;
 
+    private Parser parser = null;
 
     void setStage(Stage stage){
         this.stage = stage;
@@ -41,12 +48,14 @@ public class DataDialogController {
         fileChooser.setTitle("Wybierz plik");
         final File file = fileChooser.showOpenDialog(stage);
         if(file != null)
-            filename.setText(file.getAbsolutePath().toString());
+            filename.setText(file.getAbsolutePath());
+
+        if(parser != null){
+            reloadAttributes();
+        }
     }
 
-    public void onFinish(ActionEvent actionEvent) {
-
-        Parser parser;
+    public void apiChange(ActionEvent actionEvent){
         String chosenOne = parserChoice.getValue().toString();
         if(chosenOne.equals("AlphaVantage"))
             parser = new AlphavantageParser();
@@ -54,18 +63,44 @@ public class DataDialogController {
             parser = new IextradingParser();
         else if (chosenOne.equals("Quandl_WSE"))
             parser = new QuandlWseParser();
-        else
-            return;
 
-        parser.parseValues(filename.getText(), attachment.getText());
-        results = parser.getValues();
+        if( ! filename.getText().isEmpty()){
+            reloadAttributes();
+        }
+    }
 
-        stage.close();
+    private void reloadAttributes() {
+        parser.parseAttributes(filename.getText());
+        List<String> attributes = parser.getAttributes();
+        attributeChoice.setItems(FXCollections.observableArrayList(attributes));
+    }
+
+    public void onFinish(ActionEvent actionEvent) {
+
+        if(parser == null && attributeChoice.getValue() != null && ! attributeChoice.getValue().toString().isEmpty()){
+
+            Alert alert = new Alert(Alert.AlertType.WARNING, "Niepoprawne dane", ButtonType.OK);
+            alert.showAndWait();
+
+        } else {
+
+            try {
+                parser.parseValues(filename.getText(), attributeChoice.getValue().toString());
+                results = parser.getValues();
+
+                stage.close();
+            } catch (Exception e){
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Nieznany błąd: " + e.toString(), ButtonType.OK);
+                alert.showAndWait();
+            }
+        }
+
     }
 
     public Map<String, Double> getResults() {
         return results;
     }
+
 
     public ChartDataSource getConvertedResults() throws ParseException {
 
@@ -79,6 +114,7 @@ public class DataDialogController {
             convertedResults.getData().add( point );
         }
 
-        return new ChartDataSource(convertedResults);
+        ChartDataSource cds = new ChartDataSource(convertedResults);
+        return cds;
     }
 }
