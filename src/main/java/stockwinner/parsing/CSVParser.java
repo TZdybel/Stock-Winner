@@ -7,20 +7,22 @@ import java.io.IOException;
 
 public class CSVParser extends Parser {
 
-    public CSVParser() {
-    }
-
-    ;
 
     @Override
-    public void csvParsing(String filename, int key, int val) {
+    public void parseValues(String filename, String val) {
+        parseValues(filename, getAttributes().indexOf(val));
+    }
+
+    @Override
+    public void parseValues(String filename, int val) {
+        super.getValues().clear();
         String line = "";
         String splitBy = ",";
         try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
             line = br.readLine();
             while ((line = br.readLine()) != null) {
                 String[] row = line.split(splitBy);
-                super.getValues().put(row[key], Double.parseDouble(row[val]));
+                super.getValues().put(row[0], Double.parseDouble(row[val]));
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -32,7 +34,8 @@ public class CSVParser extends Parser {
     }
 
     @Override
-    public void csvAttributes(String filename) {
+    public void parseAttributes(String filename) {
+        super.getAttributes().clear();
         String line = "";
         String splitBy = ",";
         try (BufferedReader br = new BufferedReader(new FileReader(filename))) {

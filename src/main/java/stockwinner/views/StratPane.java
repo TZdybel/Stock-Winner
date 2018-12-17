@@ -28,7 +28,7 @@ public class StratPane extends VBox {
 
     private Strategy strategy = new Strategy();
 
-    private List<PartPane> partPanes = new ArrayList<>();
+    private List<StrategyPartController> partPanes = new ArrayList<>();
 
     public void addRule(ActionEvent actionEvent) {
         FXMLLoader loader = new FXMLLoader();
@@ -37,7 +37,7 @@ public class StratPane extends VBox {
             loader.setRoot(rules);
             loader.load();
 
-            PartPane p = loader.getController();
+            StrategyPartController p = loader.getController();
             strategy.addPart(p.getPart());
             partPanes.add(p);
 

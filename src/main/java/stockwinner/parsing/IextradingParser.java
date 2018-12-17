@@ -13,6 +13,7 @@ public class IextradingParser extends Parser {
 
     @Override
     public void parseValues(String filename, String attribute){
+        super.getValues().clear();
         try{
             JsonElement jsonElement = new JsonParser().parse(new FileReader(filename));
             JsonArray jsonArr = jsonElement.getAsJsonArray();
@@ -26,6 +27,7 @@ public class IextradingParser extends Parser {
 
     @Override
     public void parseAttributes(String filename){
+        super.getAttributes().clear();
         try{
             JsonElement jsonElement = new JsonParser().parse(new FileReader(filename));
             JsonArray jsonArr = jsonElement.getAsJsonArray();

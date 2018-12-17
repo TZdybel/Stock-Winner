@@ -11,10 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import stockwinner.ChartDataSource;
-import stockwinner.parsing.AlphavantageParser;
-import stockwinner.parsing.IextradingParser;
-import stockwinner.parsing.Parser;
-import stockwinner.parsing.QuandlWseParser;
+import stockwinner.parsing.*;
 
 import java.io.File;
 import java.text.ParseException;
@@ -63,6 +60,8 @@ public class DataDialogController {
             parser = new IextradingParser();
         else if (chosenOne.equals("Quandl_WSE"))
             parser = new QuandlWseParser();
+        else if (chosenOne.equals("CSV"))
+            parser = new CSVParser();
 
         if( ! filename.getText().isEmpty()){
             reloadAttributes();

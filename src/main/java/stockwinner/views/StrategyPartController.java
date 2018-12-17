@@ -5,7 +5,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import stockwinner.logic.StrategyPart;
 
-public class PartPane extends VBox {
+public class StrategyPartController extends VBox {
 
     @FXML
     private TextField days;

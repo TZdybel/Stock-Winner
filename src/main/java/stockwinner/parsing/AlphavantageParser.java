@@ -1,24 +1,19 @@
 package stockwinner.parsing;
 
-import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.google.gson.*;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.lang.reflect.Array;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
 public class AlphavantageParser extends Parser {
 
-    public AlphavantageParser(){};
-
     @Override
     public void parseValues(String filename, String attribute){
+        super.getValues().clear();
         try{
             JsonElement jsonElement = new JsonParser().parse(new FileReader(filename));
             JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -37,6 +32,7 @@ public class AlphavantageParser extends Parser {
 
     @Override
     public void parseAttributes(String filename){
+        super.getAttributes().clear();
         try{
             JsonElement jsonElement = new JsonParser().parse(new FileReader(filename));
             JsonObject jsonObj = jsonElement.getAsJsonObject();

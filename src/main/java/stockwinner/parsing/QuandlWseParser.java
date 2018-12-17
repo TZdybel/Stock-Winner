@@ -15,6 +15,7 @@ public class QuandlWseParser extends Parser {
 
     @Override
     public void parseValues(String filename, String attribute) {
+        super.getValues().clear();
         try {
             JsonElement jsonElement = new JsonParser().parse(new FileReader(filename));
             JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -31,6 +32,7 @@ public class QuandlWseParser extends Parser {
 
     @Override
     public void parseAttributes(String filename){
+        super.getAttributes().clear();
         try{
             JsonElement jsonElement = new JsonParser().parse(new FileReader(filename));
             JsonObject jsonObj = jsonElement.getAsJsonObject();
