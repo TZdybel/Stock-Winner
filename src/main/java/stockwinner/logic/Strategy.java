@@ -1,24 +1,34 @@
 package stockwinner.logic;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.util.Pair;
 
+import java.util.ArrayList;
 import java.util.List;
 
-abstract public class Strategy {
+public class Strategy {
 
-    protected List<Double> input;
-    protected ObservableList<Pair<Double, Double>> output;
+    public enum LOGIC { OR, AND }
 
-    public Strategy(List<Double> input){
-        output = FXCollections.observableArrayList();
-        this.input = input;
+    private List<StrategyPart> parts;
+    private LOGIC operator = LOGIC.AND;
+
+    public Strategy(){
+        parts = new ArrayList<>();
     }
 
-    public ObservableList<Pair<Double, Double>> getOutput(){
-        return output;
+    public void addPart(StrategyPart part){
+        this.parts.add(part);
     }
 
-    abstract public void startWork();
+    public void delPart(StrategyPart part){
+        this.parts.remove(part);
+    }
+
+    public LOGIC getOperator(){
+        return operator;
+    }
+
+    public void switchOperator(){
+        operator = (operator == LOGIC.OR) ? LOGIC.AND : LOGIC.OR;
+    }
+
 }

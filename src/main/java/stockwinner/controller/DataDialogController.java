@@ -1,4 +1,4 @@
-package stockwinner;
+package stockwinner.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -7,6 +7,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import stockwinner.ChartDataSource;
 import stockwinner.parsing.AlphavantageParser;
 import stockwinner.parsing.IextradingParser;
 import stockwinner.parsing.Parser;

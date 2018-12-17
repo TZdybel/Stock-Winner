@@ -10,9 +10,7 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.collections.FXCollections?>
 <?import java.lang.String?>
-<?import java.lang.Object?>
-<?import java.lang.Class?>
-<GridPane hgap="3" vgap="3" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stockwinner.DataDialogController">
+<GridPane hgap="3" vgap="3" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stockwinner.controller.DataDialogController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="150.0" />
       <ColumnConstraints />

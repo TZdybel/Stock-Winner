@@ -1,4 +1,4 @@
-package stockwinner;
+package stockwinner.controller;
 
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -12,6 +12,7 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.util.StringConverter;
+import stockwinner.ChartDataSource;
 import stockwinner.parsing.AlphavantageParser;
 
 import java.text.ParseException;

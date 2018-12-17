@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<fx:root type="javafx.scene.layout.VBox" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stockwinner.views.StratPane">
+
+    <HBox>
+        <Button onAction="#addRule" text="+" />
+        <Button onAction="#delRule" text="-" />
+        <TextField fx:id="value" promptText="\$$$" />
+        <Button fx:id="op" onAction="#logicSwitch" text="AND" />
+    </HBox>
+
+    <VBox fx:id="rules" spacing="4">
+
+      <VBox.margin>
+         <Insets bottom="16.0" />
+      </VBox.margin>
+    </VBox>
+
+</fx:root>
