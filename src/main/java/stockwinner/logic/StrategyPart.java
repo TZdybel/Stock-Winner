@@ -18,7 +18,9 @@ public class StrategyPart {
         return days;
     }
 
-    public void setDays(int days) {
+    public void setDays(int days) throws IllegalArgumentException {
+        if(days < 1)
+            throw new IllegalArgumentException("Liczba dni jest mniejsza niż 1");
         this.days = days;
     }
 

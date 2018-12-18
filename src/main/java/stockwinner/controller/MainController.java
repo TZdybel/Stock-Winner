@@ -100,7 +100,7 @@ public class MainController {
             Scene scene = new Scene(page);
             dialogStage.setScene(scene);
 
-            StrategyController dialog = loader.getController();
+            StrategyDialogController dialog = loader.getController();
             dialog.setStage(dialogStage);
 
             dialogStage.showAndWait();

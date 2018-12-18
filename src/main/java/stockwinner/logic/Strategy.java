@@ -9,6 +9,8 @@ public class Strategy {
     public enum LOGIC { OR, AND }
 
     private List<StrategyPart> parts;
+
+    private double value = 0.0;
     private LOGIC operator = LOGIC.AND;
 
     public Strategy(){
@@ -23,12 +25,24 @@ public class Strategy {
         this.parts.remove(part);
     }
 
-    public LOGIC getOperator(){
-        return operator;
+    public void delPart(int index){
+        this.parts.remove(index);
     }
 
     public void switchOperator(){
         operator = (operator == LOGIC.OR) ? LOGIC.AND : LOGIC.OR;
+    }
+
+    public LOGIC getOperator(){
+        return operator;
+    }
+
+    public double getValue() {
+        return value;
+    }
+
+    public void setValue(double value) {
+        this.value = value;
     }
 
 }

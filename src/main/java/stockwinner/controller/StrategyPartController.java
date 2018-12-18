@@ -1,4 +1,4 @@
-package stockwinner.views;
+package stockwinner.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -15,17 +15,19 @@ public class StrategyPartController extends VBox {
 
     private StrategyPart part = new StrategyPart();
 
-    public boolean maybeUpdate(){
-        // zwraca true jeżeli się powiodło
+    public void maybeUpdate() throws IllegalArgumentException {
         try {
             int days = Integer.parseInt(this.days.getText());
             part.setDays(days);
+        } catch (IllegalArgumentException e){
+            throw new IllegalStateException("Błędna liczba dni");
+        }
+
+        try {
             double procent = Double.parseDouble(this.procent.getText());
             part.setChange(procent);
-
-            return true;
-        } catch (NumberFormatException e){
-            return false;
+        } catch (IllegalArgumentException e){
+            throw new IllegalArgumentException("Błędna liczba procent");
         }
     }
 
