@@ -11,6 +11,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Pair;
 import stockwinner.ChartDataSource;
 import stockwinner.Main;
 import stockwinner.logic.Strategy;
@@ -19,7 +20,10 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
+import java.util.stream.Collectors;
 
 @SuppressWarnings("Duplicates")
 public class MainController {
@@ -37,10 +41,12 @@ public class MainController {
 
     @FXML
     Node chart;
+
     @FXML
     private ChartController chartController;
 
     private Map<String, ChartDataSource> allSeries = new HashMap<>();
+    private Map<String, List<Double>> allResults = new HashMap<>();
     private Map<String, Strategy> allStrategies = new HashMap<>();
 
     public void init(Stage stage){
@@ -80,9 +86,19 @@ public class MainController {
             dialog.setStage(dialogStage);
 
             dialogStage.showAndWait();
-            ChartDataSource source = dialog.getConvertedResults();
+            String name = "dataSource" + allSeries.size()+1;
 
-            addDataSource("dataSource" + allSeries.size(), source);
+            Map<Long, Double> results = dialog.getConvertedResults();
+
+            List<Double> sorted = results.entrySet().stream()
+                    .sorted(Map.Entry.<Long,Double>comparingByKey().reversed())
+                    .map(entry -> entry.getValue())
+                    .collect(Collectors.toList());
+            allResults.put(name,sorted);
+
+            ChartDataSource source = ChartDataSource.fromResults(results);
+
+            addDataSource(name, source);
             chartController.resetZoom();
 
         } catch (IOException | ParseException e) {
@@ -133,4 +149,15 @@ public class MainController {
         chartController.resetZoom();
     }
 
+    public void getStrategyResults(ActionEvent actionEvent) {
+        Strategy selected = allStrategies.get(strategySource.getValue());
+        List<Double> results = allResults.get(valueSource.getValue());
+        double wallet = 100.0;
+
+        selected.getResults(results, wallet);
+    }
+
+    public void clearStrategyResults(ActionEvent actionEvent) {
+        chartController.clearStrategyResults();
+    }
 }

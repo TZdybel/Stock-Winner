@@ -13,12 +13,12 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.util.StringConverter;
 import stockwinner.ChartDataSource;
-import stockwinner.parsing.AlphavantageParser;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+@SuppressWarnings("Convert2MethodRef")
 public class ChartController {
 
     @FXML
@@ -125,6 +125,10 @@ public class ChartController {
         }
     }
 
+    public void addResults(XYChart.Series<Long, Double> results){
+        results.getData().forEach( c -> nodeSetup(c));
+    }
+
     public void setData(ChartDataSource ds) {
         currentSource = ds;
         maxChartHeight = ds.getHeightProperty();
@@ -132,14 +136,6 @@ public class ChartController {
         valueChart.setData(ds.getSeriesList());
 
         ds.getInputValues().getData().stream().forEach(point -> { nodeSetup(point); });
-
-        ds.getStrategyList().forEach( l-> l.getData().addListener((ListChangeListener<XYChart.Data<Long, Double>>) c -> {
-            while(c.next()) {
-                for(XYChart.Data<Long, Double> point : c.getAddedSubList()){
-                    nodeSetup(point);
-                }
-            }
-        }));
 
         valueXAxis.setLowerBound(ds.getMinX());
         valueYAxis.setLowerBound(0);
@@ -174,5 +170,9 @@ public class ChartController {
         valueXAxis.setLowerBound(currentSource.getMinX());
         valueXAxis.setUpperBound(currentSource.getMaxX());
         valueYAxis.setAutoRanging(true);
+    }
+
+    public void clearStrategyResults() {
+        currentSource.clearStrategies();
     }
 }

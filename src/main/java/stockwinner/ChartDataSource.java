@@ -3,16 +3,18 @@ package stockwinner;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.scene.chart.XYChart;
 import javafx.util.Pair;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
+@SuppressWarnings("Duplicates")
 public class ChartDataSource {
 
     private ObservableList<XYChart.Series<Long, Double>> seriesList;
@@ -25,7 +27,7 @@ public class ChartDataSource {
 
     public ChartDataSource(XYChart.Series<Long, Double> inputValues){
         this.inputValues = inputValues;
-        seriesList = FXCollections.observableArrayList(inputValues); //, strategyValues);
+        seriesList = FXCollections.observableArrayList(inputValues);
         minX = inputValues.getData().stream()
                 .map(XYChart.Data::getXValue)
                 .min(Long::compare).orElse(0L);
@@ -38,24 +40,11 @@ public class ChartDataSource {
                 .orElse(1.0)
                 * 1.1);
 
-        inputValues.getData().stream()
-                .forEach(d -> d.getNode() );
-
     }
 
     public void addStrategySeries(XYChart.Series<Long, Double> series){
         strategyValues.add(series);
         seriesList.add(series);
-
-        series.getData().addListener((ListChangeListener<XYChart.Data<Long, Double>>) c -> {
-            while (c.next()){
-                if(c.wasAdded()){
-                    for(XYChart.Data<Long, Double> p : c.getAddedSubList())
-                        if(p.getYValue().doubleValue() > maxHeight.get() )
-                            maxHeight.setValue(p.getYValue().doubleValue());
-                }
-            }
-        });
     }
 
     public void addStrategyResults(ArrayList<Pair<Long, Double>> results){
@@ -83,8 +72,9 @@ public class ChartDataSource {
         return maxHeight;
     }
 
-    public List<XYChart.Series<Long, Double>> getStrategyList() {
-        return strategyValues;
+    public void clearStrategies() {
+        seriesList = FXCollections.observableArrayList(inputValues);
+        strategyValues.clear();
     }
 
     public long getMinX() {
@@ -98,4 +88,18 @@ public class ChartDataSource {
     public XYChart.Series<Long, Double> getInputValues() {
         return inputValues;
     }
+
+
+    public static ChartDataSource fromResults(Map<Long, Double> results) throws ParseException {
+
+        XYChart.Series<Long, Double> convertedResults = new XYChart.Series<>();
+        for(Map.Entry<Long, Double> in : results.entrySet()){
+            XYChart.Data<Long, Double> point = new XYChart.Data<>(in.getKey(), in.getValue());
+            convertedResults.getData().add( point );
+        }
+
+        ChartDataSource cds = new ChartDataSource(convertedResults);
+        return cds;
+    }
+
 }

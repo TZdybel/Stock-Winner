@@ -14,8 +14,8 @@
     <ComboBox fx:id="valueSource" onAction="#handleDataSourceChange" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="0" />
     <ComboBox fx:id="strategySource" GridPane.columnIndex="4" GridPane.halignment="LEFT" GridPane.rowIndex="0" />
 
-    <!--<Button text="Rysuj" onAction="#getStrategyResults" GridPane.columnIndex="5"/>-->
-    <!--<Button text="Wyczyść" onAction="#clearStrategyResults" GridPane.columnIndex="6"/>-->
+    <Button text="Rysuj" onAction="#getStrategyResults" GridPane.columnIndex="5"/>
+    <Button text="Wyczyść" onAction="#clearStrategyResults" GridPane.columnIndex="6"/>
 
 
     <Text fx:id="hoverValue" GridPane.columnIndex="7" GridPane.rowIndex="0" />

@@ -14,6 +14,7 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Pair;
 import stockwinner.ChartDataSource;
 import stockwinner.Main;
 import stockwinner.parsing.*;
@@ -22,6 +23,8 @@ import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -125,24 +128,18 @@ public class DataDialogController {
         }
     }
 
-    public Map<String, Double> getResults() {
-        return results;
-    }
 
-
-    public ChartDataSource getConvertedResults() throws ParseException {
+    public Map<Long, Double> getConvertedResults() throws ParseException {
 
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        Map<Long, Double> result = new HashMap<>();
 
-        Series<Long, Double> convertedResults = new Series<>();
         for(Map.Entry<String, Double> in : results.entrySet()){
-            Long key = null;
-            key = format.parse(in.getKey()).getTime();
-            Data<Long, Double> point = new Data<>(key, in.getValue());
-            convertedResults.getData().add( point );
+
+            long time = format.parse(in.getKey()).getTime();
+            result.put(time, in.getValue());
         }
 
-        ChartDataSource cds = new ChartDataSource(convertedResults);
-        return cds;
+        return result;
     }
 }
