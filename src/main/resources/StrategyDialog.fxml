@@ -7,27 +7,24 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stockwinner.controller.StrategyDialogController">
-   <children>
-      <HBox spacing="10.0">
-         <children>
-             <Button onAction="#addPart" text="+" />
-             <Button onAction="#delPart" text="-" />
-             <Button onAction="#finish" text="Gotowe" />
-             <TextField fx:id="strategyName" />
-         </children>
-         <VBox.margin>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-         </VBox.margin>
-      </HBox>
+<VBox xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="stockwinner.controller.StrategyDialogController">
+    <HBox spacing="10.0">
+        <VBox.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+        </VBox.margin>
+        <Button onAction="#addPart" text="+"/>
+        <Button onAction="#delPart" text="-"/>
+        <Button onAction="#finish" text="Gotowe"/>
+        <TextField fx:id="strategyName"/>
+    </HBox>
 
-        <ScrollPane prefHeight="600" prefWidth="600">
-            <VBox fx:id="strats">
+    <ScrollPane prefHeight="600" prefWidth="600">
+        <VBox fx:id="strats">
 
-            </VBox>
-         <padding>
-            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-         </padding>
-        </ScrollPane>
-   </children>
+        </VBox>
+        <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+        </padding>
+    </ScrollPane>
 </VBox>

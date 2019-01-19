@@ -28,4 +28,12 @@ public class Strategy {
         this.name = name;
     }
 
+    public List<Double> getResults(List<Double> input, double startingCash){
+        // decyzja strategii jest procentem naszych środków które zainwestujemy/sprzedamy
+        // ale gdyby zrobić obiekt "portfel" to miałby jedną metodę i zero pól
+        // więc strategia od razu symuluje środki w naszym portfelu i zwraca $$$
+
+        return new ArrayList<>();
+    }
+
 }

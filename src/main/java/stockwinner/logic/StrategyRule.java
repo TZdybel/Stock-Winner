@@ -1,5 +1,7 @@
 package stockwinner.logic;
 
+import java.util.List;
+
 public class StrategyRule {
 
     private int days;
@@ -30,6 +32,12 @@ public class StrategyRule {
 
     public void setChange(double change) {
         this.change = change;
+    }
+
+
+    public boolean applies(List<Double> input, int offeset){
+        // czy reguła spełniona
+        return false;
     }
 
 }

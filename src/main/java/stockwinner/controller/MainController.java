@@ -33,6 +33,9 @@ public class MainController {
     private ComboBox<String> valueSource;
 
     @FXML
+    private ComboBox<String> strategySource;
+
+    @FXML
     Node chart;
     @FXML
     private ChartController chartController;
@@ -110,6 +113,8 @@ public class MainController {
             Strategy createdStrategy = dialog.getStrategy();
 
             if( createdStrategy != null ){
+                strategySource.getItems().add(createdStrategy.getName());
+                allStrategies.put(createdStrategy.getName(), createdStrategy);
             }
 
         } catch (IOException e) {

@@ -133,13 +133,13 @@ public class ChartController {
 
         ds.getInputValues().getData().stream().forEach(point -> { nodeSetup(point); });
 
-        ds.getStrategyList().getData().addListener((ListChangeListener<XYChart.Data<Long, Double>>) c -> {
+        ds.getStrategyList().forEach( l-> l.getData().addListener((ListChangeListener<XYChart.Data<Long, Double>>) c -> {
             while(c.next()) {
                 for(XYChart.Data<Long, Double> point : c.getAddedSubList()){
                     nodeSetup(point);
                 }
             }
-        });
+        }));
 
         valueXAxis.setLowerBound(ds.getMinX());
         valueYAxis.setLowerBound(0);

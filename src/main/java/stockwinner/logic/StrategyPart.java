@@ -45,4 +45,16 @@ public class StrategyPart {
         this.value = value;
     }
 
+
+    public double getValue(List<Double> input, int offset){
+        // input -- dane z giełdy
+        // offset -- obecny dzień
+
+        // gdy reguły nie spełnione
+        // lub gdy offset jest za mały ( np. 1 a jedna z reguł wymaga znajomości wartości sprzed 4 dni )
+        // to return 0.0
+
+        return 0.0;
+    }
+
 }
