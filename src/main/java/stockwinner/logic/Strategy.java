@@ -1,48 +1,31 @@
 package stockwinner.logic;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class Strategy {
 
-    public enum LOGIC { OR, AND }
-
-    private List<StrategyPart> parts;
-
-    private double value = 0.0;
-    private LOGIC operator = LOGIC.AND;
-
-    public Strategy(){
-        parts = new ArrayList<>();
-    }
+    private List<StrategyPart> parts = new ArrayList<>();
+    private String name;
 
     public void addPart(StrategyPart part){
-        this.parts.add(part);
+        parts.add(part);
     }
 
-    public void delPart(StrategyPart part){
-        this.parts.remove(part);
+    public List<StrategyPart> getParts() {
+        return parts;
     }
 
-    public void delPart(int index){
-        this.parts.remove(index);
+    public void delPart(int index) {
+        parts.remove(index);
     }
 
-    public void switchOperator(){
-        operator = (operator == LOGIC.OR) ? LOGIC.AND : LOGIC.OR;
+    public String getName() {
+        return name;
     }
 
-    public LOGIC getOperator(){
-        return operator;
-    }
-
-    public double getValue() {
-        return value;
-    }
-
-    public void setValue(double value) {
-        this.value = value;
+    public void setName(String name) {
+        this.name = name;
     }
 
 }

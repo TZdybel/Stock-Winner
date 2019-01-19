@@ -13,6 +13,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import stockwinner.ChartDataSource;
 import stockwinner.Main;
+import stockwinner.logic.Strategy;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -37,6 +38,7 @@ public class MainController {
     private ChartController chartController;
 
     private Map<String, ChartDataSource> allSeries = new HashMap<>();
+    private Map<String, Strategy> allStrategies = new HashMap<>();
 
     public void init(Stage stage){
         this.primaryStage = stage;
@@ -104,6 +106,11 @@ public class MainController {
             dialog.setStage(dialogStage);
 
             dialogStage.showAndWait();
+
+            Strategy createdStrategy = dialog.getStrategy();
+
+            if( createdStrategy != null ){
+            }
 
         } catch (IOException e) {
             e.printStackTrace();

@@ -1,18 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
 <fx:root type="javafx.scene.layout.VBox" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stockwinner.controller.StrategyPartController">
+    <VBox>
+        <HBox>
+            <Button onAction="#addRule" text="+" />
+            <Button onAction="#delRule" text="-" />
+            <TextField fx:id="value" promptText="\$$$" />
+            <Button fx:id="op" onAction="#logicSwitch" text="AND" />
+        </HBox>
 
-    <HBox>
-        <HBox.margin>
-            <Insets left="64.0" />
-        </HBox.margin>
-        <TextField fx:id="days" promptText="Dni" />
-        <TextField fx:id="procent" promptText="Zmiana w %" />
-    </HBox>
+        <VBox fx:id="rules" spacing="4">
+
+            <VBox.margin>
+                <Insets bottom="16.0" />
+            </VBox.margin>
+        </VBox>
+    </VBox>
 
 </fx:root>

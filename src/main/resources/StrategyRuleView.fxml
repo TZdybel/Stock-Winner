@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<fx:root type="javafx.scene.layout.VBox" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stockwinner.controller.StrategyRuleController">
+
+    <HBox>
+        <HBox.margin>
+            <Insets left="64.0" />
+        </HBox.margin>
+        <TextField fx:id="days" promptText="Dni" />
+        <TextField fx:id="procent" promptText="Zmiana w %" />
+    </HBox>
+
+</fx:root>

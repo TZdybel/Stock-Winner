@@ -1,35 +1,48 @@
 package stockwinner.logic;
 
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class StrategyPart {
 
-    private int days;
-    private double change;
+    public enum LOGIC { OR, AND }
+
+    private List<StrategyRule> rules;
+
+    private double value = 0.0;
+    private LOGIC operator = LOGIC.AND;
 
     public StrategyPart(){
-        this(1,0);
+        rules = new ArrayList<>();
     }
 
-    public StrategyPart(int days, double change){
-        this.days = days;
-        this.change = change;
+    public void addRule(StrategyRule rule){
+        this.rules.add(rule);
     }
 
-    public int getDays() {
-        return days;
+    public void delRule(StrategyRule rule){
+        this.rules.remove(rule);
     }
 
-    public void setDays(int days) throws IllegalArgumentException {
-        if(days < 1)
-            throw new IllegalArgumentException("Liczba dni jest mniejsza niż 1");
-        this.days = days;
+    public void delRule(int index){
+        this.rules.remove(index);
     }
 
-    public double getChange() {
-        return change;
+    public void switchOperator(){
+        operator = (operator == LOGIC.OR) ? LOGIC.AND : LOGIC.OR;
     }
 
-    public void setChange(double change) {
-        this.change = change;
+    public LOGIC getOperator(){
+        return operator;
+    }
+
+    public double getValue() {
+        return value;
+    }
+
+    public void setValue(double value) {
+        this.value = value;
     }
 
 }
