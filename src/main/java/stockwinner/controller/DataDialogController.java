@@ -3,17 +3,23 @@ package stockwinner.controller;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.chart.XYChart.*;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import stockwinner.ChartDataSource;
+import stockwinner.Main;
 import stockwinner.parsing.*;
 
 import java.io.File;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -43,6 +49,7 @@ public class DataDialogController {
     public void onNewFile(ActionEvent actionEvent) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Wybierz plik");
+        fileChooser.setInitialDirectory(new File("./data"));
         final File file = fileChooser.showOpenDialog(stage);
         if(file != null)
             filename.setText(file.getAbsolutePath());
@@ -94,6 +101,28 @@ public class DataDialogController {
             }
         }
 
+    }
+
+    public void showDataDownloadDialog(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("/DataDownloadDialog.fxml"));
+            GridPane page = loader.load();
+
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Pobieranie nowych danych");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(stage);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            DataDownloadController dialog = loader.getController();
+            dialog.setStage(dialogStage);
+
+            dialogStage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public Map<String, Double> getResults() {

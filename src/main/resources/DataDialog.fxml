@@ -44,6 +44,7 @@
        <Button onAction="#onNewFile" text="Wybierz plik" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
        <Button onAction="#onFinish" text="Ok dodaj" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+       <Button onAction="#showDataDownloadDialog" text="Pobierz nowe dane" GridPane.columnIndex="1" GridPane.rowIndex="3" />
    </children>
    <opaqueInsets>
       <Insets />
