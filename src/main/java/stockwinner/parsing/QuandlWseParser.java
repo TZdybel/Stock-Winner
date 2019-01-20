@@ -17,6 +17,7 @@ public class QuandlWseParser extends Parser {
     public void parseValues(String filename, String attribute) {
         super.getValues().clear();
         try {
+            this.parseAttributes(filename);
             JsonElement jsonElement = new JsonParser().parse(new FileReader(filename));
             JsonObject jsonObj = jsonElement.getAsJsonObject();
             int len = jsonObj.get("dataset").getAsJsonObject().get("data").getAsJsonArray().size();
