@@ -32,8 +32,18 @@ public class Strategy {
         // decyzja strategii jest procentem naszych środków które zainwestujemy/sprzedamy
         // ale gdyby zrobić obiekt "portfel" to miałby jedną metodę i zero pól
         // więc strategia od razu symuluje środki w naszym portfelu i zwraca $$$
+        //StrategyPart - parts
 
-        return new ArrayList<>();
+        double toInvest = 0;
+        ArrayList<Double> res = new ArrayList<>();
+        for(int i=0; i<input.size(); i++){
+            toInvest = 0;
+            for(int j=0; j<parts.size(); j++){
+                toInvest += parts.get(j).getValue(input, i); //w %
+            }
+            res.add(startingCash*toInvest*0.01+input.get(i));
+        }
+        return res;
     }
 
 }
