@@ -55,14 +55,16 @@ public class StrategyPart {
         // to return 0.0
 
         for(int i=0; i<rules.size(); i++){
-            if(!rules.get(i).applies(input, offset)){
+            if(!rules.get(i).applies(input, offset) && this.operator==LOGIC.AND){
                 return 0.0;
             }
         }
 
         //strategyRule w rules
         for(int i=0; i<rules.size(); i++){
-            this.value += rules.get(i).getChange() * input.get(offset + rules.get(i).getDays());
+            if(rules.get(i).applies(input, offset)){ //dla or
+                this.value += input.get(offset) - input.get(offset - rules.get(i).getDays());
+            }
         }
 
         return this.value;
