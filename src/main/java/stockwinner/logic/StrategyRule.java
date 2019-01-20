@@ -37,8 +37,7 @@ public class StrategyRule {
 
     public boolean applies(List<Double> input, int offeset){
         // czy reguła spełniona
-        
-        double expected = input.get(offeset) * (1 + this.getChange());
+        double expected = input.get(offeset) * (1 + this.getChange()*0.01);
         if(offeset - this.getDays() < 0){
             return false;
         }
