@@ -54,7 +54,18 @@ public class StrategyPart {
         // lub gdy offset jest za mały ( np. 1 a jedna z reguł wymaga znajomości wartości sprzed 4 dni )
         // to return 0.0
 
-        return 0.0;
+        for(int i=0; i<rules.size(); i++){
+            if(!rules.get(i).applies(input, offset)){
+                return 0.0;
+            }
+        }
+
+        //strategyRule w rules
+        for(int i=0; i<rules.size(); i++){
+            this.value += rules.get(i).getChange() * input.get(offset + rules.get(i).getDays());
+        }
+
+        return this.value;
     }
 
 }
