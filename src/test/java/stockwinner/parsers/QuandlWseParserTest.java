@@ -11,7 +11,7 @@ class QuandlWseParserTest {
     @Test
     public void shouldReturnJsonFirstOpenValue(){
         QuandlWseParser quandlWseParser = new QuandlWseParser();
-        quandlWseParser.parseValues("data/quandl_wse/kursy_dzienne_pekao.json","1");
+        quandlWseParser.parseValues("data/quandl_wse/kursy_dzienne_pekao.json","Open");
         Object key = quandlWseParser.getValues().keySet().iterator().next();
         assertEquals(109.5, quandlWseParser.getValues().get(key).doubleValue());
     }
@@ -19,7 +19,7 @@ class QuandlWseParserTest {
     @Test
     public void shouldReturnJsonFirstCloseValue(){
         QuandlWseParser quandlWseParser = new QuandlWseParser();
-        quandlWseParser.parseValues("data/quandl_wse/kursy_dzienne_pekao.json","4");
+        quandlWseParser.parseValues("data/quandl_wse/kursy_dzienne_pekao.json","Close");
         Object key = quandlWseParser.getValues().keySet().iterator().next();
         assertEquals(109.8, quandlWseParser.getValues().get(key).doubleValue());
     }
@@ -28,7 +28,7 @@ class QuandlWseParserTest {
     @Test
     public void shouldReturnJsonFirstDate(){
         QuandlWseParser quandlWseParser = new QuandlWseParser();
-        quandlWseParser.parseValues("data/quandl_wse/kursy_dzienne_pekao.json","4");
+        quandlWseParser.parseValues("data/quandl_wse/kursy_dzienne_pekao.json","Close");
         Object key = quandlWseParser.getValues().keySet().iterator().next();
         assertEquals("2018-11-30", key);
     }
@@ -36,7 +36,7 @@ class QuandlWseParserTest {
     @Test
     public void shouldReturnJsonLastOpenValue(){
         QuandlWseParser quandlWseParser = new QuandlWseParser();
-        quandlWseParser.parseValues("data/quandl_wse/kursy_dzienne_pekao.json","1");
+        quandlWseParser.parseValues("data/quandl_wse/kursy_dzienne_pekao.json","Open");
         Object key = null;
         for (Object o : quandlWseParser.getValues().keySet()) {
             key = o;
@@ -47,7 +47,7 @@ class QuandlWseParserTest {
     @Test
     public void shouldReturnJsonLastCloseValue(){
         QuandlWseParser quandlWseParser = new QuandlWseParser();
-        quandlWseParser.parseValues("data/quandl_wse/kursy_dzienne_pekao.json","4");
+        quandlWseParser.parseValues("data/quandl_wse/kursy_dzienne_pekao.json","Close");
         Object key = null;
         for (Object o : quandlWseParser.getValues().keySet()) {
             key = o;
@@ -58,7 +58,7 @@ class QuandlWseParserTest {
     @Test
     public void shouldReturnJsonLastDate(){
         QuandlWseParser quandlWseParser = new QuandlWseParser();
-        quandlWseParser.parseValues("data/quandl_wse/kursy_dzienne_pekao.json","4");
+        quandlWseParser.parseValues("data/quandl_wse/kursy_dzienne_pekao.json","Close");
         Object key = null;
         for (Object o : quandlWseParser.getValues().keySet()) {
             key = o;
