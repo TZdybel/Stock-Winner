@@ -45,10 +45,10 @@ public class StrategyRule {
         if (expected >= input.get(offeset+this.getDays())){
             return true;
         }
+       
         return false;
         
-        
-        return false;
+       
     }
 
 }
