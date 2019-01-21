@@ -4,26 +4,27 @@
 
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="stockwinner.controller.ChartController"
-            prefHeight="400.0" prefWidth="600.0">
 
-    <LineChart fx:id="valueChart"
-               onMouseDragged="#handleValueChartMouseDrag"
-               onMousePressed="#handleValueChartMouseDragStart"
-               onScroll="#handleValueChartScroll"
-               prefHeight="640" prefWidth="650.0"
-               title="Wykres wartości"
-               GridPane.columnIndex="0" GridPane.columnSpan="9"
-               GridPane.rowIndex="2" GridPane.rowSpan="9">
+<LineChart fx:id="valueChart"
+           minWidth="640"
+           minHeight="640"
+           maxWidth="1600"
+           maxHeight="900"
 
-        <xAxis>
-            <NumberAxis fx:id="valueXAxis" side="BOTTOM" />
-        </xAxis>
-        <yAxis>
-            <NumberAxis fx:id="valueYAxis" side="LEFT" />
-        </yAxis>
-    </LineChart>
+           xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml"
 
-</AnchorPane>
+           onMouseDragged="#handleValueChartMouseDrag"
+           onMousePressed="#handleValueChartMouseDragStart"
+           onScroll="#handleValueChartScroll"
+           title="Wykres wartości"
+           fx:controller="stockwinner.controller.ChartController">
+
+    <xAxis>
+        <NumberAxis fx:id="valueXAxis" side="BOTTOM" />
+    </xAxis>
+    <yAxis>
+        <NumberAxis fx:id="valueYAxis" side="LEFT" />
+    </yAxis>
+</LineChart>
+

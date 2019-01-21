@@ -36,6 +36,7 @@ public class Strategy {
 
         double invested = 0;
         ArrayList<Double> results = new ArrayList<>();
+        results.add(cash); // dzień 0
         for(int i = 1; i < input.size(); i++){
 
             double decision = 0.0;

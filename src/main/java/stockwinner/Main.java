@@ -19,10 +19,6 @@ public class Main extends Application {
 
         Scene scene = new Scene(root, 800,800);
 
-        stage.setMaxWidth(800);
-        stage.setMaxHeight(800);
-        stage.setMinWidth(800);
-        stage.setMinHeight(800);
 
         stage.setTitle("StockWinner");
         stage.setScene(scene);
