@@ -56,7 +56,6 @@ public class ChartDataSource {
         for(int i = 0; i < results.size(); i++){
             long k = keys.get(i);
             double v = results.get(i);
-            System.out.println("" + k + " " + v);
             XYChart.Data<Long, Double> datapoint = new XYChart.Data<>(k,v);
             series.getData().add(datapoint);
         }

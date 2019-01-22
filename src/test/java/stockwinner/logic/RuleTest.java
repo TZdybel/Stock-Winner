@@ -55,4 +55,24 @@ class RuleTest {
         } catch (IllegalArgumentException e){}
     }
 
+    @Test
+    void inequalityTest(){
+        List<Double> values = Arrays.asList(199.0, 100.0, 49.0, 100.0, 199.0);
+
+        StrategyRule sr1 = new StrategyRule();
+        sr1.setChange(-50.0);
+        sr1.setDays(1);
+
+        StrategyRule sr2 = new StrategyRule();
+        sr2.setChange(100.0);
+        sr2.setDays(1);
+
+        assertFalse(sr1.applies(values,1));
+        assertTrue(sr1.applies(values,2));
+
+        assertTrue(sr2.applies(values,3));
+        assertFalse(sr2.applies(values,4));
+
+    }
+
 }
