@@ -59,9 +59,10 @@ public class StrategyPart {
             boolean applies = rules.get(i).applies(input, offset);
             if (operator == LOGIC.AND && !applies)
                 return 0.0;
-            if (operator == LOGIC.OR && applies) {
+            if (applies) {
                 decision = true;
-                break;
+                if(operator == LOGIC.OR)
+                    break;
             }
         }
         if (!decision)

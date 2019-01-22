@@ -17,6 +17,7 @@ import stockwinner.ChartDataSource;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 @SuppressWarnings("Convert2MethodRef")
 public class ChartController {
@@ -125,10 +126,6 @@ public class ChartController {
         }
     }
 
-    public void addResults(XYChart.Series<Long, Double> results){
-        results.getData().forEach( c -> nodeSetup(c));
-    }
-
     public void setData(ChartDataSource ds) {
         currentSource = ds;
         maxChartHeight = ds.getHeightProperty();
@@ -167,10 +164,20 @@ public class ChartController {
     }
 
     public void resetZoom() {
-        valueXAxis.setLowerBound(currentSource.getMinX());
-        valueXAxis.setUpperBound(currentSource.getMaxX());
-        valueYAxis.setAutoRanging(true);
+        if(currentSource != null) {
+            valueXAxis.setLowerBound(currentSource.getMinX());
+            valueXAxis.setUpperBound(currentSource.getMaxX());
+            valueYAxis.setAutoRanging(true);
+        }
     }
+
+    public void addResults(List<Double> inputs){
+        if(currentSource != null){
+            XYChart.Series<Long,Double> series = currentSource.addStrategyResults(inputs);
+            series.getData().forEach( c -> nodeSetup(c));
+        }
+    }
+
 
     public void clearStrategyResults() {
         currentSource.clearStrategies();

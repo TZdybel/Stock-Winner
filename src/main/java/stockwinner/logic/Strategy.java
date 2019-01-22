@@ -47,16 +47,18 @@ public class Strategy {
             // zainwestowane środki rosną/maleją
             invested *= input.get(i) / input.get(i-1);
 
+            decision = Double.max(-100.0, decision);
+            decision = Double.min(100.0, decision);
+
             // a potem dodajemy/odejmujemy od nich na podstawie decyzji
+            double delta = 0.0;
             if( decision > 0 ){
-                double delta = cash * decision/100.0;
-                cash -= delta;
-                invested += delta;
+                delta = cash * decision/100.0;
             } else {
-                double delta = invested * decision/100.0;
-                cash += delta;
-                invested -= delta;
+                delta = invested * decision/100.0;
             }
+            cash -= delta;
+            invested += delta;
 
             results.add(cash + invested);
         }

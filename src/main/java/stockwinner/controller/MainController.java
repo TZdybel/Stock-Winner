@@ -91,7 +91,7 @@ public class MainController {
             Map<Long, Double> results = dialog.getConvertedResults();
 
             List<Double> sorted = results.entrySet().stream()
-                    .sorted(Map.Entry.<Long,Double>comparingByKey().reversed())
+                    .sorted(Map.Entry.<Long,Double>comparingByKey())
                     .map(entry -> entry.getValue())
                     .collect(Collectors.toList());
             allResults.put(name,sorted);
@@ -151,10 +151,11 @@ public class MainController {
 
     public void getStrategyResults(ActionEvent actionEvent) {
         Strategy selected = allStrategies.get(strategySource.getValue());
-        List<Double> results = allResults.get(valueSource.getValue());
-        double wallet = 100.0;
+        List<Double> inputs = allResults.get(valueSource.getValue());
+        double wallet = inputs.get(0);
 
-        selected.getResults(results, wallet);
+        List<Double> results = selected.getResults(inputs, wallet);
+        chartController.addResults(results);
     }
 
     public void clearStrategyResults(ActionEvent actionEvent) {

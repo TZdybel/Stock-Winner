@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @SuppressWarnings("Duplicates")
 public class ChartDataSource {
@@ -47,16 +48,21 @@ public class ChartDataSource {
         seriesList.add(series);
     }
 
-    public void addStrategyResults(ArrayList<Pair<Long, Double>> results){
+    public XYChart.Series<Long, Double> addStrategyResults(List<Double> results){
 
         XYChart.Series<Long, Double> series = new XYChart.Series<>();
+        List<Long> keys = inputValues.getData().stream().map(x -> x.getXValue()).sorted().collect(Collectors.toList());
 
-        for(Pair<Long, Double> p : results){
-            XYChart.Data<Long, Double> datapoint = new XYChart.Data<>(p.getKey(), p.getValue());
+        for(int i = 0; i < results.size(); i++){
+            long k = keys.get(i);
+            double v = results.get(i);
+            System.out.println("" + k + " " + v);
+            XYChart.Data<Long, Double> datapoint = new XYChart.Data<>(k,v);
             series.getData().add(datapoint);
         }
 
         addStrategySeries(series);
+        return series;
     }
 
 
@@ -73,7 +79,7 @@ public class ChartDataSource {
     }
 
     public void clearStrategies() {
-        seriesList = FXCollections.observableArrayList(inputValues);
+        seriesList.removeAll(strategyValues);
         strategyValues.clear();
     }
 

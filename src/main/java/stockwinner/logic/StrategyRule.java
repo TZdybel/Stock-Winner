@@ -41,11 +41,12 @@ public class StrategyRule {
             return false;
         double now = input.get(offset);
         double then = input.get(offset - getDays());
-        if (now >= then * (1+ getChange()*0.01)){
-            return true;
+        if(getChange() > 0 ){
+            return now >= then * (1 + getChange() * 0.01);
+        } else {
+            return now <= then * (1 + getChange() * 0.01);
         }
-        return false;
-       
+
     }
 
 }
