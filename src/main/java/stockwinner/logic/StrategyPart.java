@@ -37,7 +37,7 @@ public class StrategyPart {
         return operator;
     }
 
-    public double getValue() {
+    public double getResult() {
         return value;
     }
 
@@ -46,7 +46,7 @@ public class StrategyPart {
     }
 
 
-    public double getValue(List<Double> input, int offset){
+    public double getResult(List<Double> input, int offset){
         // input -- dane z giełdy
         // offset -- obecny dzień
 
@@ -54,18 +54,18 @@ public class StrategyPart {
         // lub gdy offset jest za mały ( np. 1 a jedna z reguł wymaga znajomości wartości sprzed 4 dni )
         // to return 0.0
 
-        for(int i=0; i<rules.size(); i++){
-            if(!rules.get(i).applies(input, offset) && this.operator==LOGIC.AND){
+        boolean decision = false;
+        for (int i = 0; i < rules.size(); i++) {
+            boolean applies = rules.get(i).applies(input, offset);
+            if (operator == LOGIC.AND && !applies)
                 return 0.0;
+            if (operator == LOGIC.OR && applies) {
+                decision = true;
+                break;
             }
         }
-
-        //strategyRule w rules
-        for(int i=0; i<rules.size(); i++){
-            if(rules.get(i).applies(input, offset)){ //dla or
-                this.value += input.get(offset) - input.get(offset - rules.get(i).getDays());
-            }
-        }
+        if (!decision)
+            return 0.0;
 
         return this.value;
     }

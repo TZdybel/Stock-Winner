@@ -41,7 +41,7 @@ public class Strategy {
 
             double decision = 0.0;
             for(int j = 0; j < parts.size(); j++){
-                decision += parts.get(j).getValue(input, i);
+                decision += parts.get(j).getResult(input, i);
             }
 
             // zainwestowane środki rosną/maleją
