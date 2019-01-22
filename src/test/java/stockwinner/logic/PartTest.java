@@ -33,7 +33,7 @@ class PartTest {
         sp.addRule(failRule);
         sp.setValue(7.0);
 
-        assertEquals(sp.getValue(inputs, 1), 0.0);
+        assertEquals(sp.getResult(inputs, 1), 0.0);
     }
 
     @Test
@@ -44,6 +44,6 @@ class PartTest {
         sp.addRule(failRule);
         sp.setValue(7.0);
 
-        assertEquals(sp.getValue(inputs, 1), 7.0);
+        assertEquals(sp.getResult(inputs, 1), 7.0);
     }
 }
